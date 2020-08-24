@@ -1,0 +1,20 @@
+main.out: main.o util.o network.o node.o source.o
+	g++-8 -std=c++0x -Wall -DNDEBUG -Ofast -march=native -fassociative-math -freciprocal-math -fno-signed-zeros -fno-trapping-math -frename-registers -funroll-loops -g -o main.out main.o util.o network.o node.o source.o -lgsl -lgslcblas -lm -fopenmp
+
+main.o: main.cpp main.h hyperparams.h
+	g++-8 -std=c++0x -Wall -DNDEBUG -Ofast -march=native -fassociative-math -freciprocal-math -fno-signed-zeros -fno-trapping-math -frename-registers -funroll-loops -g -c main.cpp -fopenmp
+
+network.o: network.cpp network.h hyperparams.h
+	g++-8 -std=c++0x -Wall -DNDEBUG -Ofast -march=native -fassociative-math -freciprocal-math -fno-signed-zeros -fno-trapping-math -frename-registers -funroll-loops -g -c network.cpp -fopenmp
+
+node.o: node.cpp node.h hyperparams.h
+	g++-8 -std=c++0x -Wall -DNDEBUG -Ofast -march=native -fassociative-math -freciprocal-math -fno-signed-zeros -fno-trapping-math -frename-registers -funroll-loops -g -c node.cpp
+
+util.o: util.cpp util.h
+	g++-8 -std=c++0x -Wall -DNDEBUG -Ofast -march=native -fassociative-math -freciprocal-math -fno-signed-zeros -fno-trapping-math -frename-registers -funroll-loops -g -c util.cpp
+
+source.o: source.cpp source.h
+	g++-8 -std=c++0x -Wall -DNDEBUG -Ofast -march=native -fassociative-math -freciprocal-math -fno-signed-zeros -fno-trapping-math -frename-registers -funroll-loops -g -c source.cpp
+
+clean:
+	rm -f main.out main.o network.o node.o source.o util.o
